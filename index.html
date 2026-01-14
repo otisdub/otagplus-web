@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050705" />
 
+  <link rel="icon" type="image/png" href="assets/plus-logo.png">
+
   <title>Otisdub Tag PLUS — Coming Soon to the Meta Quest Store</title>
   <meta name="description" content="Otisdub Tag PLUS — a refined, optimized VR tag experience with better maps, better graphics, and new ways to play. Coming soon to the Meta Quest Store." />
 
-  <!-- Open Graph / Social (update after you add assets) -->
   <meta property="og:title" content="Otisdub Tag PLUS" />
   <meta property="og:description" content="Coming Soon to the Meta Quest Store." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -56,7 +56,6 @@
       overflow-x:hidden;
     }
 
-    /* Subtle motion only */
     @media (prefers-reduced-motion: no-preference){
       body::before{
         content:"";
@@ -77,7 +76,6 @@
     a{color:inherit; text-decoration:none}
     .container{max-width:var(--max); margin:0 auto; padding:0 18px}
 
-    /* Topbar */
     .topbar{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
@@ -138,7 +136,6 @@
     .btn.ghost{background: rgba(0,0,0,.18)}
     .icon{width:18px; height:18px; display:inline-block}
 
-    /* Hero */
     header.hero{padding: 54px 0 18px}
     .hero-shell{
       border-radius: var(--radius);
@@ -251,7 +248,6 @@
       white-space:nowrap;
     }
 
-    /* Sections */
     section{padding: 22px 0}
     .section-head{
       display:flex; align-items:flex-end; justify-content:space-between;
@@ -293,7 +289,6 @@
     .card h3{margin: 0 0 8px; font-size:16px}
     .card p{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
 
-    /* Screenshots only */
     .shots{
       display:grid;
       grid-template-columns: 1.4fr 1fr 1fr;
@@ -324,11 +319,9 @@
       margin-top: 10px;
     }
 
-    /* Reveal */
     .reveal{opacity:0; transform: translateY(10px); transition: .5s ease}
     .reveal.on{opacity:1; transform: translateY(0)}
 
-    /* Footer */
     footer{
       padding: 34px 0 40px;
       color: var(--muted);
@@ -341,7 +334,6 @@
     }
     .small{color:var(--muted2); font-size:13px; line-height:1.55}
 
-    /* Responsive */
     @media (max-width: 980px){
       .hero-inner{grid-template-columns: 1fr}
       .grid-3{grid-template-columns: 1fr}
@@ -359,13 +351,32 @@
 </head>
 
 <body>
-  <!-- Top bar -->
   <div class="topbar">
     <div class="container">
       <div class="topbar-inner">
         <div class="brand">
-          <!-- Optional: replace with <img src="assets/studio-logo.png"> if you want -->
-          <div class="logo" aria-hidden="true"></div>
+          <img src="assets/studio-logo.png" alt="Otisclub" class="studio-logo">
+          <img src="assets/plus-logo.png" alt="Otisdub Tag PLUS" class="app-logo">
+          .studio-logo{
+            width:38px;
+            height:38px;
+            object-fit: contain;
+            border-radius: 10px;
+          }
+
+          .app-logo{
+            width:38px;
+            height:38px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: rgba(0,0,0,.25);
+            padding: 6px;
+            box-shadow:
+              0 0 0 1px rgba(255,255,255,.15),
+              0 10px 30px rgba(0,254,0,.25),
+              0 0 18px rgba(250,255,0,.18);
+          }
+
           <div>
             <p class="title">Otisdub Tag <span style="font-weight:800">PLUS</span></p>
             <p class="sub">Coming Soon to the Meta Quest Store</p>
@@ -387,7 +398,6 @@
     </div>
   </div>
 
-  <!-- Hero -->
   <header class="hero">
     <div class="container">
       <div class="hero-shell reveal" id="hero">
@@ -481,7 +491,6 @@
     </div>
   </header>
 
-  <!-- Overview -->
   <section id="overview">
     <div class="container">
       <div class="section-head reveal">
@@ -511,7 +520,6 @@
     </div>
   </section>
 
-  <!-- Features -->
   <section id="features">
     <div class="container">
       <div class="section-head reveal">
@@ -536,25 +544,21 @@
         </div>
       </div>
 
-      <!-- Optional “secret experimental” note: kept subtle -->
       <p class="note reveal" style="margin-top:12px">
         Some experimental content exists in development builds and may change prior to release.
       </p>
     </div>
   </section>
 
-  <!-- Screenshots (no captions) -->
   <section id="screenshots">
     <div class="container">
       <div class="section-head reveal">
         <div>
           <h2>Screenshots</h2>
-          <p>Add your best images to <code>assets/</code> and update the filenames if needed.</p>
         </div>
       </div>
 
       <div class="shots">
-        <!-- Replace these with your real screenshots -->
         <div class="shot reveal">
           <img src="assets/screenshot-1.jpg" alt="Otisdub Tag PLUS screenshot 1">
         </div>
@@ -566,13 +570,9 @@
         </div>
       </div>
 
-      <p class="note reveal">
-        Recommended image size: <b>1920×1080</b> (or larger). Keep compression reasonable for faster loading.
-      </p>
     </div>
   </section>
 
-  <!-- Platforms -->
   <section id="platforms">
     <div class="container">
       <div class="section-head reveal">
@@ -599,12 +599,11 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div class="small">
-          © <span id="year"></span> Otisdub Tag PLUS. All rights reserved.<br />
+          © <span id="year"></span> Otisclub. All rights reserved.<br />
           <span style="color:rgba(255,255,255,.45)">Otisclub</span>
         </div>
         <div class="small" style="text-align:right">
@@ -617,7 +616,6 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Store button: "Coming soon" behavior until you have a real URL
     function comingSoon(e){
       const link = e.currentTarget.getAttribute("href");
       if (!link || link === "STORE_LINK" || link === "#"){
@@ -629,7 +627,6 @@
       return true;
     }
 
-    // Subtle reveal-on-scroll
     const els = Array.from(document.querySelectorAll(".reveal"));
     const io = new IntersectionObserver((entries) => {
       for (const ent of entries){
