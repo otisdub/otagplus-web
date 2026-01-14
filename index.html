@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050705" />
+
+  <title>Otisdub Tag PLUS — Coming Soon to the Meta Quest Store</title>
+  <meta name="description" content="Otisdub Tag PLUS — a refined, optimized VR tag experience with better maps, better graphics, and new ways to play. Coming soon to the Meta Quest Store." />
+
+  <!-- Open Graph / Social (update after you add assets) -->
+  <meta property="og:title" content="Otisdub Tag PLUS" />
+  <meta property="og:description" content="Coming Soon to the Meta Quest Store." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#040604;
+      --bg1:#070a07;
+      --bg2:#0b100b;
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --stroke: rgba(255,255,255,.14);
+
+      --green: #00FE00;
+      --yellow:#FAFF00;
+
+      --radius: 22px;
+      --shadow: 0 26px 70px rgba(0,0,0,.55);
+      --shadow2: 0 14px 40px rgba(0,0,0,.36);
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 20% -10%, rgba(0,254,0,.20), transparent 60%),
+        radial-gradient(900px 520px at 80% 0%, rgba(250,255,0,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* Subtle motion only */
+    @media (prefers-reduced-motion: no-preference){
+      body::before{
+        content:"";
+        position:fixed; inset:0;
+        pointer-events:none;
+        background:
+          radial-gradient(900px 500px at 18% 10%, rgba(0,254,0,.10), transparent 62%),
+          radial-gradient(900px 500px at 85% 22%, rgba(250,255,0,.08), transparent 62%);
+        opacity:.9;
+        animation: drift 14s ease-in-out infinite alternate;
+      }
+      @keyframes drift{
+        0%{transform: translate3d(0,0,0)}
+        100%{transform: translate3d(2.5%, -1.8%, 0)}
+      }
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(4,6,4,.58);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 45%),
+        linear-gradient(135deg, rgba(0,254,0,.95), rgba(250,255,0,.85));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 45px rgba(0,254,0,.12);
+    }
+    .brand .title{margin:0; font-size:14px; letter-spacing:.2px}
+    .brand .sub{margin:2px 0 0; font-size:12px; color:var(--muted2)}
+    nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+    nav a{
+      font-size:13px; padding:9px 12px; border-radius:999px;
+      border:1px solid transparent; color:var(--muted);
+      transition:.18s ease;
+    }
+    nav a:hover{
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow2);
+      font-weight:600;
+      font-size:13px;
+      color: var(--text);
+      transition: .18s ease;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.085)}
+    .btn.primary{
+      border-color: rgba(0,254,0,.35);
+      background: linear-gradient(135deg, rgba(0,254,0,.85), rgba(250,255,0,.75));
+      color: rgba(0,0,0,.88);
+      box-shadow: 0 18px 45px rgba(0,254,0,.12);
+    }
+    .btn.primary:hover{filter:saturate(1.05) brightness(1.02)}
+    .btn.ghost{background: rgba(0,0,0,.18)}
+    .icon{width:18px; height:18px; display:inline-block}
+
+    /* Hero */
+    header.hero{padding: 54px 0 18px}
+    .hero-shell{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-shell::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(900px 380px at 12% 0%, rgba(0,254,0,.22), transparent 60%),
+        radial-gradient(900px 380px at 92% 15%, rgba(250,255,0,.14), transparent 62%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      padding: 30px 26px 22px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      font-size: 12px;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:99px;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(0,254,0,.12);
+    }
+    .h1{
+      margin:0 0 10px;
+      font-size: 46px;
+      line-height: 1.02;
+      letter-spacing: -0.7px;
+    }
+    .plus{
+      background: linear-gradient(90deg, rgba(0,254,0,1), rgba(250,255,0,1));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      font-weight: 900;
+    }
+    .lead{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .sublead{
+      margin: 0 0 18px;
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+
+    .hero-right{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      overflow:hidden;
+      box-shadow: var(--shadow2);
+      display:flex;
+      flex-direction:column;
+      min-height: 240px;
+    }
+    .hero-right .top{
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .mini{
+      margin:0;
+      color: rgba(255,255,255,.82);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+    .stack{display:grid; gap:10px; padding: 12px 14px 14px}
+    .row{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .row b{font-size:14px}
+    .row span{font-size:12px; color:var(--muted2)}
+    .chip{
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Sections */
+    section{padding: 22px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      margin: 14px 0 12px;
+    }
+    .section-head h2{
+      margin:0; font-size: 22px; letter-spacing: -0.2px;
+    }
+    .section-head p{margin:0; color:var(--muted); max-width:70ch}
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+      transition: .18s ease;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 220px at 0% 0%, rgba(0,254,0,.14), transparent 60%),
+        radial-gradient(650px 200px at 100% 0%, rgba(250,255,0,.10), transparent 65%);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .card > *{position:relative}
+    .card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.18)}
+    .card h3{margin: 0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
+
+    /* Screenshots only */
+    .shots{
+      display:grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 14px;
+    }
+    .shot{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      overflow:hidden;
+      min-height: 230px;
+      box-shadow: var(--shadow2);
+      position:relative;
+    }
+    .shot img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.01);
+      filter:saturate(1.02) contrast(1.03);
+      transition: .22s ease;
+    }
+    .shot:hover img{transform: scale(1.03)}
+    .note{
+      color: var(--muted2);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(10px); transition: .5s ease}
+    .reveal.on{opacity:1; transform: translateY(0)}
+
+    /* Footer */
+    footer{
+      padding: 34px 0 40px;
+      color: var(--muted);
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top: 18px;
+    }
+    .footer-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px; flex-wrap:wrap;
+    }
+    .small{color:var(--muted2); font-size:13px; line-height:1.55}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns: 1fr}
+      .grid-3{grid-template-columns: 1fr}
+      .shots{grid-template-columns: 1fr}
+      nav{display:none}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      body::before{animation:none}
+      .btn:hover,.card:hover,.shot:hover img{transform:none}
+      .reveal{opacity:1; transform:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <!-- Optional: replace with <img src="assets/studio-logo.png"> if you want -->
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <p class="title">Otisdub Tag <span style="font-weight:800">PLUS</span></p>
+            <p class="sub">Coming Soon to the Meta Quest Store</p>
+          </div>
+        </div>
+
+        <nav aria-label="Primary">
+          <a href="#overview">Overview</a>
+          <a href="#features">Features</a>
+          <a href="#screenshots">Screenshots</a>
+          <a href="#platforms">Platforms</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn ghost" href="#screenshots" title="View screenshots">Media</a>
+          <a class="btn primary" href="#store" title="Meta Quest Store link (coming soon)">Meta Quest Store</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-shell reveal" id="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="badge"><span class="dot" aria-hidden="true"></span> In development • Studio build</div>
+            <h1 class="h1">Otisdub Tag <span class="plus">PLUS</span></h1>
+            <p class="lead">
+              <b>Otisdub Tag, but better</b> — rebuilt with stronger maps, upgraded visuals, improved performance,
+              and online multiplayer designed to scale with future updates.
+            </p>
+            <p class="sublead">
+              <span style="color:rgba(255,255,255,.86)">Status:</span> Coming Soon to the Meta Quest Store.
+              <span style="color:rgba(255,255,255,.55)"> (Public listing planned — not App Lab.)</span>
+            </p>
+
+            <div class="hero-actions" id="store">
+              <!-- Replace STORE_LINK later with the real Quest Store URL -->
+              <a class="btn primary" href="STORE_LINK" onclick="return comingSoon(event)">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M10 8l6 4-6 4V8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                View Store Page
+              </a>
+
+              <a class="btn" href="#features">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16M4 12h12M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                See Features
+              </a>
+
+              <a class="btn ghost" href="#platforms">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 16l-3-3 3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M17 8l3 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14 4l-4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Supported Headsets
+              </a>
+            </div>
+
+            <p class="note" id="storeMsg" aria-live="polite"></p>
+          </div>
+
+          <aside class="hero-right">
+            <div class="top">
+              <p class="mini">Build Focus</p>
+            </div>
+            <div class="stack">
+              <div class="row">
+                <div>
+                  <b>Better Maps</b><br />
+                  <span>Flow, routes, and clean readability</span>
+                </div>
+                <span class="chip">Design</span>
+              </div>
+              <div class="row">
+                <div>
+                  <b>Better Graphics</b><br />
+                  <span>Sharper look without losing performance</span>
+                </div>
+                <span class="chip">Visual</span>
+              </div>
+              <div class="row">
+                <div>
+                  <b>More Optimized</b><br />
+                  <span>Stable frame targets for Quest</span>
+                </div>
+                <span class="chip">Performance</span>
+              </div>
+              <div class="row">
+                <div>
+                  <b>Online Multiplayer</b><br />
+                  <span>Built to support future updates</span>
+                </div>
+                <span class="chip">Network</span>
+              </div>
+              <div class="row">
+                <div>
+                  <b>New Game Modes</b><br />
+                  <span>Currently Free Play (more coming)</span>
+                </div>
+                <span class="chip">Modes</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overview -->
+  <section id="overview">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Overview</h2>
+          <p>
+            Otisdub Tag PLUS is built for a more polished, more replayable VR tag experience —
+            with a studio-grade presentation and a foundation that can grow.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3>Designed to feel better</h3>
+          <p>Smoother presentation, improved technical performance, and a cleaner overall experience on Quest.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Maps that matter</h3>
+          <p>Better routes, better readability, and spaces that support different playstyles and future modes.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Updates-ready foundation</h3>
+          <p>Built to support new content and new modes without the project turning into a mess.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Features</h2>
+          <p>Clear, minimal, and confident — without over-promising before launch.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3>Online Multiplayer</h3>
+          <p>Online play designed for fast sessions and stable performance on supported Meta Quest headsets.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Improved Visuals</h3>
+          <p>Upgraded graphics and presentation while maintaining the performance a VR game needs.</p>
+        </div>
+        <div class="card reveal">
+          <h3>New Modes Incoming</h3>
+          <p>Currently focused on Free Play — with additional modes planned as development progresses.</p>
+        </div>
+      </div>
+
+      <!-- Optional “secret experimental” note: kept subtle -->
+      <p class="note reveal" style="margin-top:12px">
+        Some experimental content exists in development builds and may change prior to release.
+      </p>
+    </div>
+  </section>
+
+  <!-- Screenshots (no captions) -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Screenshots</h2>
+          <p>Add your best images to <code>assets/</code> and update the filenames if needed.</p>
+        </div>
+      </div>
+
+      <div class="shots">
+        <!-- Replace these with your real screenshots -->
+        <div class="shot reveal">
+          <img src="assets/screenshot-1.jpg" alt="Otisdub Tag PLUS screenshot 1">
+        </div>
+        <div class="shot reveal">
+          <img src="assets/screenshot-2.jpg" alt="Otisdub Tag PLUS screenshot 2">
+        </div>
+        <div class="shot reveal">
+          <img src="assets/screenshot-3.jpg" alt="Otisdub Tag PLUS screenshot 3">
+        </div>
+      </div>
+
+      <p class="note reveal">
+        Recommended image size: <b>1920×1080</b> (or larger). Keep compression reasonable for faster loading.
+      </p>
+    </div>
+  </section>
+
+  <!-- Platforms -->
+  <section id="platforms">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Supported Headsets</h2>
+          <p>Targeted for Meta Quest standalone VR.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3>Meta Quest 2</h3>
+          <p>Standalone performance targets and optimizations designed for smooth play.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Meta Quest 3 / 3S</h3>
+          <p>Sharper visuals and improved headroom for future expansions.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Meta Quest Pro</h3>
+          <p>Supported as part of the standalone Quest lineup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="small">
+          © <span id="year"></span> Otisdub Tag PLUS. All rights reserved.<br />
+          <span style="color:rgba(255,255,255,.45)">Otisclub</span>
+        </div>
+        <div class="small" style="text-align:right">
+          <span style="color:rgba(255,255,255,.45)">GitHub Pages</span> • <a href="#store" style="text-decoration:underline; text-decoration-color: rgba(0,254,0,.45)">Store page coming soon</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Store button: "Coming soon" behavior until you have a real URL
+    function comingSoon(e){
+      const link = e.currentTarget.getAttribute("href");
+      if (!link || link === "STORE_LINK" || link === "#"){
+        e.preventDefault();
+        const msg = document.getElementById("storeMsg");
+        msg.textContent = "Meta Quest Store page is coming soon. Check back for the public listing.";
+        return false;
+      }
+      return true;
+    }
+
+    // Subtle reveal-on-scroll
+    const els = Array.from(document.querySelectorAll(".reveal"));
+    const io = new IntersectionObserver((entries) => {
+      for (const ent of entries){
+        if (ent.isIntersecting) ent.target.classList.add("on");
+      }
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
