@@ -7,11 +7,11 @@
 
   <link rel="icon" type="image/png" href="assets/plus-logo.png">
 
-  <title>Otisdub Tag PLUS — Coming Soon to the Meta Quest Store</title>
-  <meta name="description" content="Otisdub Tag PLUS — a refined, optimized VR tag experience with better maps, better graphics, and new ways to play. Coming soon to the Meta Quest Store." />
+  <title>Otisdub Tag PLUS — Out on the Meta Quest Store</title>
+  <meta name="description" content="Otisdub Tag PLUS — a refined, optimized VR tag experience with better maps, better graphics, and new ways to play. This game is out on the Meta Quest Store." />
 
   <meta property="og:title" content="Otisdub Tag PLUS" />
-  <meta property="og:description" content="Coming Soon to the Meta Quest Store." />
+  <meta property="og:description" content="Out on the Meta Quest Store." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -382,7 +382,7 @@
 
           <div>
             <p class="title">Otisdub Tag <span style="font-weight:800">PLUS</span></p>
-            <p class="sub">Coming Soon to the Meta Quest Store</p>
+            <p class="sub">Out on the Meta Quest Store</p>
           </div>
         </div>
 
@@ -395,7 +395,7 @@
 
         <div style="display:flex; gap:10px; flex-wrap:wrap">
           <a class="btn ghost" href="#screenshots" title="View screenshots">Media</a>
-          <a class="btn primary" href="#store" title="Meta Quest Store link (coming soon)">Meta Quest Store</a>
+          <a class="btn primary" href="#store" title="Meta Quest Store link">Meta Quest Store</a>
         </div>
       </div>
     </div>
@@ -413,13 +413,13 @@
               and online multiplayer designed to scale with future updates.
             </p>
             <p class="sublead">
-              <span style="color:rgba(255,255,255,.86)">Status:</span> Coming Soon to the Meta Quest Store.
+              <span style="color:rgba(255,255,255,.86)">Status:</span> Out on the Meta Quest Store.
               <span style="color:rgba(255,255,255,.55)"> (Public listing planned — not App Lab.)</span>
             </p>
 
             <div class="hero-actions" id="store">
               <!-- Replace STORE_LINK later with the real Quest Store URL -->
-              <a class="btn primary" href="STORE_LINK" onclick="return comingSoon(event)">
+              <a class="btn primary" href="https://www.meta.com/experiences/otisdub-tag-plus/33826638090313186/" onclick="return comingSoon(event)">
                 <svg class="icon" viewBox="0 0 24 24" fill="none">
                   <path d="M10 8l6 4-6 4V8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
                   <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
@@ -628,7 +628,7 @@
       if (!link || link === "STORE_LINK" || link === "#"){
         e.preventDefault();
         const msg = document.getElementById("storeMsg");
-        msg.textContent = "Meta Quest Store page is coming soon. Check back for the public listing.";
+        msg.textContent = "";
         return false;
       }
       return true;
